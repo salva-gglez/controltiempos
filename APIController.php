@@ -741,7 +741,7 @@ class APIController extends BaseController {
         		'username' => $lector->username,
         		'nombre' => $lector->nombre,
         		'limite_semanal' => $lector->limite_semanal,
-        		'limite_mensual' => $lector->limite_mensual
+        		'limite_diario' => $lector->limite_diario
         	);
         }
 
