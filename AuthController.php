@@ -315,7 +315,7 @@ class AuthController extends BaseController {
 
                 $lector = Lector::where('username', '=', Input::get('username'))->first();
                 //Buscamos el lector por si ya esta creado
-                Log::debug("Lector validado con absys: (" . print_r($lector,TRUE) . ").");
+                Log::debug("(Autenticando) Lector validado con absys: (" . print_r($lector,TRUE) . ").");
 
                 if( isset($lector) )
                 {
@@ -326,7 +326,7 @@ class AuthController extends BaseController {
         	                ->withInput();
                 	}
 
- 		    Log::debug("Actualizando lector.");
+ 		    		Log::debug("Actualizando lector.");
                     // Actualizar estado
                     $lector->origen = 2; // Absys
                     $lector->terminal = $this->terminal;
@@ -344,14 +344,14 @@ class AuthController extends BaseController {
                     $lector->ultimo_login = date("Y-m-d H:i:s");
                     $lector->limite_diario = Config::get('controltiempos.limite_diario');
                     $lector->limite_semanal = Config::get('controltiempos.limite_semanal');
-	            $lector->notas = print_r($data, TRUE);
-		    $lector->acumuladoDiario = 0;
-		    $lector->acumuladoMensual = 0;
+	            	$lector->notas = print_r($data, TRUE);
+		    		$lector->acumuladoDiario = 0;
+		    		$lector->acumuladoSemanal = 0;
                 }
 
                 $lector->save();
 
-                // Quitar el terminal al resto de lectores que la tuvieron anteriormente
+                // El terminal al que accede el usuario no debe estar asignado a ningun otro lector
                 Lector::where('terminal', '=', $this->terminal)
                     ->where('id', '<>', $lector->id)
                     ->update(array('terminal' => NULL));
@@ -362,7 +362,7 @@ class AuthController extends BaseController {
 
                 Auth::login( $this->get_user_lector() );
 
-		// Registrar el acceso
+				// Registrar el acceso
                 $registro = new Registro();
                 $registro->reg_terminal = $this->terminal;
                 $registro->reg_hora = date("Y-m-d H:i:s");
