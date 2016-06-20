@@ -739,7 +739,9 @@ class APIController extends BaseController {
         {
         	$response->lector = (object) array(
         		'username' => $lector->username,
-        		'nombre' => $lector->nombre
+        		'nombre' => $lector->nombre,
+        		'limite_semanal' => $lector->limite_semanal,
+        		'limite_mensual' => $lector->limite_mensual
         	);
         }
 
