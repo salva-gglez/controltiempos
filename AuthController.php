@@ -315,7 +315,7 @@ class AuthController extends BaseController {
 
                 $lector = Lector::where('username', '=', Input::get('username'))->first();
                 //Buscamos el lector por si ya esta creado
-                Log::debug("(Autenticando) Lector validado con absys: (" . print_r($lector,TRUE) . ").");
+                Log::debug("(Autenticado) Lector validado con absys: (" . print_r($lector,TRUE) . ").");
 
                 if( isset($lector) )
                 {
@@ -331,6 +331,7 @@ class AuthController extends BaseController {
                     $lector->origen = 2; // Absys
                     $lector->terminal = $this->terminal;
                     $lector->ultimo_login = date("Y-m-d H:i:s");
+                    Log::debug("Lector actualizado.");
                 }
                 else
                 {
@@ -357,7 +358,22 @@ class AuthController extends BaseController {
                     ->update(array('terminal' => NULL));
 
                 $terminal->est_status = 1;
-                $terminal->est_timetolive = $lector->limite_diario;
+                // Calculamos el tiempo restante del lector en base al tiempo diario y semanal
+                //tiempo semanal
+                if ($lector->acumuladoSemanal >= $lector->limite_semanal) {
+                	Log::info("Limite semanal superado por el usuario (" . $lector->username . ")");
+                	return Redirect::to('login')
+                	->with('mensaje_error', 'Limite de uso semanal superado.')
+                	->withInput();
+                }
+                // tiempo diario
+                $terminal->est_timetolive = $lector->limite_diario - $lector->acumuladoDiario;
+                if ($terminal->est_timetolive <= 0) {
+                	Log::info("Limite diario superado por el usuario (" . $lector->username . ")");
+                	return Redirect::to('login')
+                	->with('mensaje_error', 'Limite de uso diario superado.')
+                	->withInput();
+                } 
                 $terminal->save();
 
                 Auth::login( $this->get_user_lector() );
