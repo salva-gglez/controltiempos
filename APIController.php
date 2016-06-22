@@ -565,15 +565,23 @@ class APIController extends BaseController {
 
 			$lector = new Lector();
 			$lector->username = $params->username;
-			$lector->origen = 1;
 			$lector->nombre = $params->nombre;
 			$lector->limite_diario = $params->limite_diario;
 			$lector->limite_semanal = $params->limite_semanal;
 			$lector->apellidos = $params->apellidos;
-			$lector->correo = $params->correo;
-			$lector->dni = $params->dni;
-			$lector->notas = $params->notas;
-			$lector->telefono = $params->telefono;
+			$lector->dni = $params->dni;			
+			// No obligatorios
+			if (!empty($params->correo)) {
+				$lector->correo = $params->correo;
+			}
+			if (!empty($params->notas)) {
+				$lector->notas = $params->notas;
+			}
+			if (!empty($params->telefono)) {
+				$lector->telefono = $params->telefono;
+			}
+			// Valores calculados
+			$lector->origen = 1;
 			$lector->fechaAlta = date("Y-m-d H:i:s");
 			$lector->acumuladoDiario = 0;
 			$lector->acumuladoSemanal = 0;
