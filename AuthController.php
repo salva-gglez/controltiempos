@@ -331,6 +331,7 @@ class AuthController extends BaseController {
                     $lector->origen = 2; // Absys
                     $lector->terminal = $this->terminal;
                     $lector->ultimo_login = date("Y-m-d H:i:s");
+                    $lector->notas = print_r($data, TRUE);
                     Log::debug("Lector actualizado.");
                 }
                 else
