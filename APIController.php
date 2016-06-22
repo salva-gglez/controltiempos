@@ -343,7 +343,9 @@ class APIController extends BaseController {
 				'telefono' => $item->telefono,
 				'notas' => $item->notas,
 				'acumuladoDiario' => $item->acumuladoDiario,
-				'acumuladoSemanal' => $item->acumuladoSemanal
+				'acumuladoSemanal' => $item->acumuladoSemanal,
+				'limite_diario' => $item->limite_diario,
+				'limite_semanal' => $item->limite_semanal
 			);
 			$response->lector_list[] = $lector;
 		}
@@ -392,7 +394,9 @@ class APIController extends BaseController {
 					'notas' => $item->notas,
 					'telefono' => $item->telefono,
 					'acumuladoDiario' => $item->acumuladoDiario,
-					'acumuladoSemanal' => $item->acumuladoSemanal
+					'acumuladoSemanal' => $item->acumuladoSemanal,
+					'limite_diario' => $item->limite_diario,
+  					'limite_semanal' => $item->limite_semanal
 				)
 			);
 
@@ -746,7 +750,9 @@ class APIController extends BaseController {
         		'username' => $lector->username,
         		'nombre' => $lector->nombre,
         		'limite_semanal' => $lector->limite_semanal,
-        		'limite_diario' => $lector->limite_diario
+        		'limite_diario' => $lector->limite_diario,
+        		'acumuladoDiario' => $lector->acumuladoDiario,
+        		'acumuladoSemanal' => $lector->acumuladoSemanal,
         	);
         }
 
