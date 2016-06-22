@@ -20,44 +20,50 @@
     </head>
     <body>
         <div>
-            <div class="col-md-9">Biblioteca: <% $biblioteca->nombre %></div>
+            <div class="col-md-9">Biblioteca: <b><% $biblioteca->nombre %></b></div>
             <div class="col-md-3">
-                <div>Terminal: <% $terminal->id %></div>
-                <div>Estado: <% $terminal->status %></div>
+                <div>Terminal: <b><% $terminal->id %></b></div>
+                <div>Estado: <b><% $terminal->status %></b></div>
                 <%-- <div>Bloqueado: <% $terminal->disabled %></div> --%>
             </div>
         </div>
         <div style="display:none" class="center" id="Bloqueado">
 		<h1>Terminal Bloqueado</h1>
 	</div>
-	
-	        <div class="container">
+
+ <div class="container">
             <div class="col-md-4">
             </div>
             <div class="col-md-8">
-
+ <h1>Terminal de la Biblioteca Municipal</h1>
             <div class="panel panel-default">
               <div class="panel-body">
+                 <!-- <div class="checkbox">
+                      <label>
+                      <input type="checkbox" id="checkboxPoliticas" onclick="$('#submit').prop('disabled', !this.checked)" />
+                      Acepto las politicas de uso
+                      </label>
+                 </div> -->
+                 <div class="a">
+                      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Politicas de uso</button>
+                      <!-- <label>
+
+                       <a href="docs/PoliticaUso.pdf" target="_blank" />
+                       <embed srv="docs/PoliticaUso.pdf" />
+                      Politicas de uso
+                      </label> -->
                  <div class="checkbox">
                       <label>
                       <input type="checkbox" id="checkboxPoliticas" onclick="$('#submit').prop('disabled', !this.checked)" />
                       Acepto las politicas de uso
                       </label>
                  </div>
-                 <div class="a">
-                      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Politicas de uso</button>
-                      <!-- <label>
-                       
-                       <a href="docs/PoliticaUso.pdf" target="_blank" /> 
-                       <embed srv="docs/PoliticaUso.pdf" /> 
-                      Politicas de uso
-                      </label> -->
                  </div>
               </div>
             </div>
             </div>
         </div>
-	
+
         <div class="container">
             <div class="col-md-4">
 
@@ -100,7 +106,6 @@
             </div>
 
         </div>
-
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
