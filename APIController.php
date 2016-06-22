@@ -424,6 +424,8 @@ class APIController extends BaseController {
     			'lector.nombre AS nombre',
     			'lector.limite_diario',
     			'lector.limite_semanal',
+    			'lector.acumuladoDiario',
+    			'lector.acumuladoSemanal',
     			'tipo_identificador',
     			'lector_tipos_identificador.nombre AS nombre_identificador'));
     		
@@ -435,7 +437,10 @@ class APIController extends BaseController {
 				'uid' => $item->uid,
 				'name' => $item->nombre,
 				'limite_diario' => intval($item->limite_diario),
-				'limite_semanal' => intval($ite->limite_semanal),
+				'limite_semanal' => intval($item->limite_semanal),
+				'lector.acumuladoDiario' => intval($item->acumuladoDiario),
+				'lector.acumuladoSemanal' => intval($item->acumuladoSemanal),
+				'lector.restanteSemana' => intval(intval($item->limite_semanal) - intval($item->acumuladoSemanal)),
 				'type' => $item->tipo_identificador,
 				'type_name' => $item->nombre_identificador);
 			$response->lector_list[] = $lector;

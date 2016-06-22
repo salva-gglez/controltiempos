@@ -48,10 +48,12 @@
 			  	Terminal: {{ terminal.id }}
 			  	</br>
 			  	</br>
-			  	Tiempo de uso restante: {{ terminal.timetolive }} min.  &nbsp;
+			  	Tiempo de uso restante de hoy: {{ terminal.timetolive }} min.  &nbsp;
+			  	</br>
+			  	Tiempo de uso restante de la semana: {{ lector.restanteSemana }} min. &nbsp;
 			  	<hr/>
 			  	<u>Limites establecidos para el lector</u>
-			  	</br>
+			  	</br></br>
 			  	Limite semanal: {{ lector.limite_semanal }}
 			  	<br/>
 			  	Limite diario: {{ lector.limite_diario }}
